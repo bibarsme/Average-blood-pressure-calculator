@@ -8,13 +8,12 @@
     :root {
       --nhs-blue: #005eb8;
       --nhs-dark: #00395d;
-      --sidings-accent: #f59e0b;
       --bg-soft: #f5f7fb;
       --border-soft: #e5e7eb;
       --text-main: #111827;
       --text-muted: #4b5563;
       --radius-lg: 14px;
-      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.15);
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.18);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
     }
@@ -26,11 +25,11 @@
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top, #e0ebf7 0, #f5f7fb 55%, #ffffff 100%);
+      background: radial-gradient(circle at top, #dce9f8 0, #f5f7fb 55%, #ffffff 100%);
       color: var(--text-main);
     }
 
-    /* Top header bar */
+    /* Header */
     .site-header {
       background: linear-gradient(90deg, var(--nhs-dark), var(--nhs-blue));
       color: #ffffff;
@@ -63,7 +62,7 @@
       letter-spacing: 0.08em;
     }
 
-    /* Main layout */
+    /* Layout */
     .shell {
       max-width: 1080px;
       margin: 1.5rem auto 2.5rem auto;
@@ -87,7 +86,7 @@
     }
 
     .app-main {
-      padding: 1.75rem 1.75rem 1.5rem 1.75rem;
+      padding: 1.75rem 1.75rem 1.4rem 1.75rem;
       border-right: 1px solid var(--border-soft);
     }
 
@@ -99,7 +98,7 @@
     }
 
     .app-aside {
-      padding: 1.75rem 1.75rem 1.5rem 1.75rem;
+      padding: 1.75rem 1.75rem 1.4rem 1.75rem;
       background: linear-gradient(145deg, #f9fafb, #edf2ff);
     }
 
@@ -126,7 +125,7 @@
     }
 
     .pill {
-      padding: 0.15rem 0.6rem;
+      padding: 0.16rem 0.6rem;
       border-radius: 999px;
       background: #eff6ff;
       color: #1d4ed8;
@@ -140,7 +139,7 @@
       border-color: #e5e7eb;
     }
 
-    /* Table + inputs */
+    /* Table and inputs */
     .section-title {
       margin-top: 1.4rem;
       font-size: 0.98rem;
@@ -319,12 +318,6 @@
       margin: 0.15rem 0;
     }
 
-    .label {
-      font-weight: 600;
-      font-size: 0.84rem;
-      margin-top: 0.4rem;
-    }
-
     .footnote {
       margin-top: 0.85rem;
       font-size: 0.78rem;
@@ -344,9 +337,9 @@
   <header class="site-header">
     <div>
       <div class="site-title">Sidings Medical Practice</div>
-      <div class="site-subtitle">Boston, Lincolnshire &middot; Internal clinical tool</div>
+      <div class="site-subtitle">Boston, Lincolnshire · Internal tool</div>
     </div>
-    <div class="site-tag">Blood Pressure · HBPM</div>
+    <div class="site-tag">Hypertension · HBPM</div>
   </header>
 
   <main class="shell">
@@ -354,20 +347,22 @@
       <!-- Left: calculator -->
       <section class="app-main" aria-label="Average blood pressure calculator">
         <header>
-          <h1>Home Blood Pressure Average Calculator</h1>
+          <h1>Average Blood Pressure Calculator (HBPM / multiple readings)</h1>
           <p class="strapline">
-            Use for summarising home or multiple surgery readings. No data is stored or transmitted.
+            Calculates a simple average from home or clinic readings. Hypertension is a
+            modifiable cardiovascular risk factor – interpret in line with NICE NG136.
           </p>
           <div class="meta-line">
             <span class="pill">For Sidings Medical Practice staff</span>
-            <span class="pill pill-soft">Arithmetic mean only – follow NICE NG136 / local ICB guidance</span>
+            <span class="pill pill-soft">No data stored or transmitted · browser only</span>
           </div>
         </header>
 
         <div>
           <div class="section-title">Enter blood pressure readings</div>
           <p class="section-help">
-            Enter one or more complete systolic/diastolic pairs. Leave unused rows blank.
+            Use readings from the arm with the higher blood pressure. Enter complete
+            systolic/diastolic pairs (e.g. HBPM or repeated clinic BPs). Leave unused rows blank.
           </p>
 
           <table id="bpTable">
@@ -410,58 +405,67 @@
         </div>
 
         <p class="footnote">
-          This calculator provides the simple arithmetic average of the readings entered.
-          It does not replace clinical judgement. Always interpret in context of the patient’s overall
-          cardiovascular risk and follow current <span class="highlight">NICE NG136</span> hypertension
-          guidance and Lincolnshire ICB policies.
+          This tool gives the arithmetic mean of readings entered. It does not diagnose or
+          manage hypertension. Compare the average with
+          <span class="highlight">NICE NG136</span> and local Lincolnshire ICB guidance, taking
+          into account overall cardiovascular risk (e.g. QRISK3), comorbidities, frailty and
+          patient preference.
         </p>
       </section>
 
       <!-- Right: guidance / notes -->
       <aside class="app-aside">
-        <div class="aside-heading">How to use in Sidings Medical Practice</div>
+        <div class="aside-heading">How this relates to NICE NG136</div>
         <p class="aside-text">
-          This tool is designed for clinicians and trained admin staff to summarise home blood pressure
-          monitoring (HBPM) or multiple surgery readings before recording in SystmOne.
+          For diagnosis, NICE uses average daytime ABPM or average HBPM. Clinic thresholds
+          are higher than home thresholds. Use this calculator to obtain the average, then
+          apply the guideline.
         </p>
 
         <div class="aside-card">
-          <h3>Typical workflow (HBPM)</h3>
+          <h3>HBPM / daytime ABPM diagnostic ranges</h3>
           <ul class="aside-list">
-            <li>Use readings from the arm with the higher blood pressure.</li>
-            <li>Enter valid daytime/home readings only (discard clearly erroneous values).</li>
-            <li>Each used row must contain both systolic and diastolic values.</li>
-            <li>Click <strong>Calculate average</strong> and record the result in the notes / BP template.</li>
-          </ul>
-        </div>
-
-        <div class="aside-card">
-          <h3>Very broad interpretation guide</h3>
-          <p class="aside-text">
-            Exact thresholds depend on clinical context. As a rough guide for <em>home</em> readings:
-          </p>
-          <ul class="aside-list">
-            <li><strong>&lt;130/&lt;80</strong> &ndash; typically within normal range.</li>
-            <li><strong>&lt;135/&lt;85</strong> &ndash; borderline / high normal.</li>
-            <li><strong>≥135 or ≥85</strong> &ndash; raised: consider diagnosis / treatment per NG136.</li>
+            <li><strong>&lt;135/85 mmHg</strong> – below the home/ABPM threshold used to diagnose hypertension.</li>
+            <li>
+              <strong>135/85–149/94 mmHg</strong> – corresponds to
+              <strong>stage&nbsp;1 hypertension</strong> range for HBPM/ABPM.
+            </li>
+            <li>
+              <strong>≥150/95 mmHg</strong> – corresponds to
+              <strong>stage&nbsp;2 hypertension</strong> range for HBPM/ABPM.
+            </li>
           </ul>
           <p class="aside-text">
-            These prompts are for internal support only and <strong>are not diagnostic on their own</strong>.
+            Diagnosis and treatment still depend on age, target organ damage, existing CVD
+            and 10-year CVD risk, not numbers alone.
           </p>
         </div>
 
         <div class="aside-card">
-          <h3>Governance &amp; data</h3>
+          <h3>Targets when monitoring treatment (HBPM)</h3>
           <ul class="aside-list">
-            <li>Runs entirely in the browser – no data stored, logged or transmitted.</li>
-            <li>Do not paste identifiable information (names, DOB, NHS numbers) into this page.</li>
-            <li>Record the final average and source (HBPM / surgery readings) in SystmOne.</li>
+            <li><strong>Age &lt;80y:</strong> usually aim for average home BP below about <strong>135/85</strong>.</li>
+            <li><strong>Age ≥80y:</strong> usually aim for average home BP below about <strong>145/85</strong>.</li>
+          </ul>
+          <p class="aside-text">
+            These correspond to clinic targets of roughly &lt;140/90 and &lt;150/90. Use
+            clinical judgement in frailty or multimorbidity.
+          </p>
+        </div>
+
+        <div class="aside-card">
+          <h3>Practical notes for Sidings</h3>
+          <ul class="aside-list">
+            <li>Record the calculated average and source (e.g. "7-day HBPM") in SystmOne.</li>
+            <li>Do not enter identifiable data on this page (no names, DOB, NHS numbers).</li>
+            <li>Remember cuff size, technique and posture when arranging HBPM/ABPM.</li>
           </ul>
         </div>
 
         <p class="footnote">
-          Internal tool for Sidings Medical Practice, Boston. For audit or protocol updates,
-          liaise with the Clinical Lead / governance team.
+          Hypertension is a risk factor for cardiovascular disease, not a disease in itself.
+          Reducing blood pressure and wider lifestyle risk (smoking, weight, alcohol, activity,
+          salt and sodium load – including soluble medications) reduces future events.
         </p>
       </aside>
     </div>
@@ -488,7 +492,7 @@
 
     function initialiseRows() {
       tbody.innerHTML = "";
-      // Default: 14 rows (e.g. 7 days × 2 readings), still flexible
+      // 14 rows as a reasonable default (e.g. 7 days × 2 readings)
       for (let i = 1; i <= 14; i++) {
         addRow(i);
       }
@@ -500,14 +504,14 @@
       resultCard.style.display = "none";
     }
 
+    // Classify based on NICE NG136 HBPM/ABPM diagnostic bands
     function classifyBP(sys, dia) {
-      // Very broad home BP prompts.
-      if (sys < 130 && dia < 80) {
-        return "Average is within the typical normal range for home blood pressure readings. Continue routine follow-up as per practice protocol.";
-      } else if (sys < 135 && dia < 85) {
-        return "Average is borderline / high-normal. Consider overall cardiovascular risk, repeat measurements and follow Sidings / NG136 hypertension pathways.";
+      if (sys < 135 && dia < 85) {
+        return "Average is below the home/ambulatory threshold typically used to diagnose hypertension. Still interpret in context of clinic readings, cardiovascular risk and target organ damage.";
+      } else if ((sys >= 135 && sys <= 149) || (dia >= 85 && dia <= 94)) {
+        return "Average sits in the home/ambulatory range that corresponds to stage 1 hypertension. Whether to start or intensify treatment depends on age, target organ damage, existing CVD and estimated 10-year risk.";
       } else {
-        return "Average is raised for home readings. This may meet diagnostic or treatment thresholds depending on the patient and context – review against NICE NG136 and local ICB guidance.";
+        return "Average sits in the home/ambulatory range that corresponds to stage 2 hypertension. NICE usually recommends drug treatment alongside lifestyle change unless there are specific reasons not to.";
       }
     }
 
@@ -526,7 +530,7 @@
         const diaVal = inputs[1].value.trim();
 
         if (!sysVal && !diaVal) {
-          return; // completely empty row – ignore
+          return; // ignore completely empty row
         }
 
         if (!sysVal || !diaVal) {
@@ -539,12 +543,7 @@
         const sys = Number(sysVal);
         const dia = Number(diaVal);
 
-        if (
-          Number.isNaN(sys) ||
-          Number.isNaN(dia) ||
-          sys <= 0 ||
-          dia <= 0
-        ) {
+        if (Number.isNaN(sys) || Number.isNaN(dia) || sys <= 0 || dia <= 0) {
           errorEl.textContent =
             "Please check entries – all values must be positive numbers.";
           hasRowError = true;
